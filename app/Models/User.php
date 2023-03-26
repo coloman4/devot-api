@@ -53,4 +53,11 @@ class User extends Authenticatable
             set: fn (string $value) => Hash::make($value)
         );
     }
+
+    /**
+     * Get users categories
+     */
+    public function categories() {
+        return $this->hasMany(Category::class);
+    }
 }
