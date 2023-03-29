@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoryRequest extends FormRequest
+class UpdateExpenseRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,7 +14,10 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|nullable'
+            'name' => 'string|nullable',
+            'category_id' => 'exists:categories,id|nullable',
+            'amount' => 'numeric|nullable|min:0',
+            'description' => 'max:255|nullable'
         ];
     }
 }

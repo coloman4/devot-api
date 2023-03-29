@@ -45,6 +45,20 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get users categories
+     */
+    public function categories() {
+        return $this->hasMany(Category::class);
+    }
+
+    /**
+     * Get users expenses/bills
+     */
+    public function expenses() {
+        return $this->hasMany(Expense::class);
+    }
+
+    /**
      * Mutator: Encrypt password before it is saved to database
      */
     protected function password(): Attribute
@@ -52,12 +66,5 @@ class User extends Authenticatable
         return Attribute::make(
             set: fn (string $value) => Hash::make($value)
         );
-    }
-
-    /**
-     * Get users categories
-     */
-    public function categories() {
-        return $this->hasMany(Category::class);
     }
 }
